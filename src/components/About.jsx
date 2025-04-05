@@ -9,7 +9,7 @@ const About = ({ summary, education }) => (
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
         <Avatar
-          src="/path/to/your/photo.jpg" // Replace with your photo
+          src="/images/profilePic.jpeg" // Replace with your photo
           sx={{ 
             width: 200, 
             height: 200,
