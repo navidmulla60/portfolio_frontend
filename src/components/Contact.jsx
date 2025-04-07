@@ -32,7 +32,7 @@ const Contact = () => (
             <IconButton href="https://www.linkedin.com/in/navid-mulla/" target="_blank">
               <LinkedIn fontSize="large" />
             </IconButton>
-            <IconButton href="https://github.com/yourusername" target="_blank">
+            <IconButton href="https://github.com/navidmulla60?tab=repositories" target="_blank">
               <GitHub fontSize="large" />
             </IconButton>
           </Box>
