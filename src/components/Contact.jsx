@@ -8,7 +8,7 @@ const Contact = () => (
       Get In Touch
     </Typography>
     <Grid container spacing={4} justifyContent="center">
-      <Grid item xs={12} md={6}>
+      {/* <Grid item xs={12} md={6}>
         <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <TextField label="Name" variant="outlined" fullWidth />
           <TextField label="Email" variant="outlined" fullWidth />
@@ -17,7 +17,7 @@ const Contact = () => (
             Send Message
           </Button>
         </Box>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} md={6}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
