@@ -11,7 +11,7 @@ const getCSRFToken = () => {
 
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'production'
-    ? 'https://portfoliobackend-production-a8a7.up.railway.app/api/'  // Added https:// and /api/
+    ? 'https://portfoliobackend-production-a8a7.up.railway.app/api/'  
     : 'http://localhost:8000/api/',
   withCredentials: true,  // Required for CSRF and session cookies
   headers: {

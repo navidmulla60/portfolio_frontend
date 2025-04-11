@@ -5,7 +5,7 @@ import {
   Typography, Box, Chip, Stack, Divider, Button, 
   List, ListItem, ListItemText 
 } from '@mui/material';
-import YouTubeEmbed from '../components/YouTubeEmbed';
+import DriveVideoEmbed from '../components/DriveVideoEmbed';
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -123,16 +123,27 @@ const ProjectDetail = () => {
       </Box>
       
       {/* Auto-embed LinkedIn videos for relevant projects */}
-      {(project.title.includes('Robot') || project.title.includes('ROS')) && (
+      {/* {(project.title.includes('Robot') || project.title.includes('ROS')) && (
         <Box sx={{ mt: 6 }}>
           <Typography variant="h5" gutterBottom>Project Demonstration</Typography>
           <Divider sx={{ mb: 3 }} />
           <YouTubeEmbed 
-            url="https://www.linkedin.com/in/navid-mulla/videos/" 
+            url="https://drive.google.com/file/d/1-zfKNZH-aluNdyeZipnbpeHyiWU3Mx4K/preview?usp=drive_link" 
             title={project.title}
           />
         </Box>
-      )}
+      )} */}
+    {(project.title.includes('Robot') || project.title.includes('ROS')) && (
+      <Box sx={{ mt: 6 }}>
+        <Typography variant="h5" gutterBottom>Project Demonstration</Typography>
+        <Divider sx={{ mb: 3 }} />
+        <DriveVideoEmbed 
+          url={project.live_link}
+          // url="https://drive.google.com/file/d/1-zfKNZH-aluNdyeZipnbpeHyiWU3Mx4K/preview?usp=drive_link" 
+          title={project.title}
+        />
+      </Box>
+    )}
     </Box>
   );
 };

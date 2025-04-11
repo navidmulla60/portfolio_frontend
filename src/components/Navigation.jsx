@@ -49,6 +49,7 @@ const Navigation = () => {
             duration={500}
             offset={-70} // Adjust for fixed header height
             spy={true}
+            passive={true}
             activeClass="active"
             sx={{ 
               mx: 1,
