@@ -1,47 +1,99 @@
 import React from "react";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Button, Box, useTheme, useMediaQuery } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 
-const Hero = ({ title, subtitle, description, resumeUrl }) => (
-  <Box
-    sx={{
-      textAlign: "center",
-      py: 8,
-      background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
-      backgroundImage: 'url("/images/heroic4.jpeg")',
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <Typography variant="h2" color="white" gutterBottom>
-      {title}
-    </Typography>
-    <Typography variant="h5" color="primary" gutterBottom>
-      {subtitle}
-    </Typography>
-    <Typography variant="body1" color="white" paragraph>
-      {description}
-    </Typography>
+const Hero = ({ title, subtitle, description, resumeUrl }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-    <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
-      <Button variant="contained" href="#projects" sx={{ mt: 3 }}>
-        View My Projects
-      </Button>
+  return (
+    <Box
+      sx={{
+        textAlign: "center",
+        py: isMobile ? 4 : 8,
+        background: "linear-gradient(135deg, rgba(245,247,250,0.8) 0%, rgba(195,207,226,0.8) 100%)",
+        backgroundImage: 'url("/images/heroic4.jpeg")',
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "overlay",
+      }}
+    >
+      <Typography 
+        variant={isMobile ? "h3" : "h2"} 
+        color="white" 
+        gutterBottom
+        sx={{
+          fontSize: isMobile ? '2rem' : '3rem',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+        }}
+      >
+        {title}
+      </Typography>
+      
+      <Typography 
+        variant={isMobile ? "h6" : "h5"} 
+        color="primary" 
+        gutterBottom
+        sx={{
+          fontWeight: 600
+        }}
+      >
+        {subtitle}
+      </Typography>
+      
+      <Typography 
+        variant="body1" 
+        color="white" 
+        paragraph
+        sx={{
+          px: isMobile ? 2 : 4,
+          fontSize: isMobile ? '0.9rem' : '1rem',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+        }}
+      >
+        {description}
+      </Typography>
 
-      {resumeUrl && (
-        <Button
-          variant="outlined"
-          startIcon={<DownloadIcon />}
-          href={resumeUrl}
-          download
-          sx={{ mt: 3 }}
+      <Box sx={{ 
+        display: "flex", 
+        gap: 2, 
+        justifyContent: "center",
+        flexDirection: isMobile ? 'column' : 'row',
+        px: isMobile ? 2 : 0
+      }}>
+        <Button 
+          variant="contained" 
+          href="#projects" 
+          sx={{ 
+            mt: 3,
+            py: isMobile ? 1 : 1.5,
+            px: isMobile ? 2 : 3,
+            fontSize: isMobile ? '0.8rem' : '0.9rem'
+          }}
         >
-          Download Resume
+          View My Projects
         </Button>
-      )}
+
+        {resumeUrl && (
+          <Button
+            variant="outlined"
+            startIcon={<DownloadIcon fontSize={isMobile ? "small" : "medium"} />}
+            href={resumeUrl}
+            download
+            sx={{ 
+              mt: 3,
+              py: isMobile ? 1 : 1.5,
+              px: isMobile ? 2 : 3,
+              fontSize: isMobile ? '0.8rem' : '0.9rem'
+            }}
+          >
+            Download Resume
+          </Button>
+        )}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 export default Hero;
