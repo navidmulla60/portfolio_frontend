@@ -9,11 +9,11 @@ const Skills = ({ skills }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const categories = [...new Set(skills.map(skill => skill.category))];
 
-  // Constants for our calculations
-  const SKILL_ITEM_HEIGHT = 44; // px - height of each skill item
-  const SKILL_ITEM_MARGIN = 8; // px - vertical gap between items
-  const CATEGORY_HEADER_HEIGHT = 56; // px - height of category header
-  const MIN_CATEGORY_HEIGHT = 100; // px - minimum height for any category
+  // Compact size constants
+  const SKILL_ITEM_HEIGHT = 64;
+  const ROW_GAP = 8;
+  const CATEGORY_PADDING = 16;
+  const HEADER_HEIGHT = 44;
 
   const renderSkillLevel = (proficiency) => {
     const stars = [];
@@ -22,47 +22,56 @@ const Skills = ({ skills }) => {
 
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
-        stars.push(<StarIcon key={i} fontSize="small" sx={{ color: theme.palette.warning.main }} />);
+        stars.push(<StarIcon key={i} fontSize="small" sx={{ 
+          color: theme.palette.warning.main,
+          fontSize: '1rem'
+        }} />);
       } else if (i === fullStars && hasHalfStar) {
-        stars.push(<StarHalfIcon key={i} fontSize="small" sx={{ color: theme.palette.warning.main }} />);
+        stars.push(<StarHalfIcon key={i} fontSize="small" sx={{ 
+          color: theme.palette.warning.main,
+          fontSize: '1rem'
+        }} />);
       } else {
-        stars.push(<StarBorderIcon key={i} fontSize="small" sx={{ color: theme.palette.text.disabled }} />);
+        stars.push(<StarBorderIcon key={i} fontSize="small" sx={{ 
+          color: theme.palette.text.disabled,
+          fontSize: '1rem'
+        }} />);
       }
     }
 
     return (
-      <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5 }}>
+      <Box sx={{ display: 'flex', gap: 0.5, mt: 0.25 }}>
         {stars}
       </Box>
     );
   };
 
-  // Calculate required height for each category
-  const calculateCategoryHeight = (skillCount) => {
-    const itemsPerRow = 2; // We show 2 skills per row
-    const rowCount = Math.ceil(skillCount / itemsPerRow);
-    const contentHeight = (rowCount * SKILL_ITEM_HEIGHT) + ((rowCount - 1) * SKILL_ITEM_MARGIN);
-    return Math.max(MIN_CATEGORY_HEIGHT, CATEGORY_HEADER_HEIGHT + contentHeight + 24); // 24px padding
+  const getCategoryHeight = (skillCount) => {
+    // Dynamically calculate columns needed (min 2, max 3 columns)
+    const columns = skillCount > 3 ? 3 : 2;
+    const rowCount = Math.ceil(skillCount / columns);
+    const contentHeight = (rowCount * SKILL_ITEM_HEIGHT) + ((rowCount - 1) * ROW_GAP);
+    return HEADER_HEIGHT + contentHeight + CATEGORY_PADDING;
   };
 
   return (
     <Box id="skills" sx={{ 
-      py: 6,
-      px: { xs: 2, md: 4 },
+      py: 4,
+      px: { xs: 2, md: 3 },
       backgroundColor: theme.palette.background.default,
     }}>
-      <Typography variant="h4" align="center" gutterBottom sx={{ 
-        mb: 4,
+      <Typography variant="h5" align="center" gutterBottom sx={{ 
+        mb: 3,
         fontWeight: 'bold',
         color: theme.palette.primary.main,
         position: 'relative',
         '&:after': {
           content: '""',
           display: 'block',
-          width: '80px',
-          height: '4px',
+          width: '60px',
+          height: '3px',
           backgroundColor: theme.palette.secondary.main,
-          margin: '16px auto 0',
+          margin: '12px auto 0',
           borderRadius: '2px'
         }
       }}>
@@ -72,63 +81,61 @@ const Skills = ({ skills }) => {
       <Box sx={{
         display: 'grid',
         gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
-        gap: 3,
-        maxWidth: '1200px',
+        gap: 2,
+        maxWidth: '1000px',
         mx: 'auto',
         alignItems: 'start'
       }}>
         {categories.map((category) => {
           const categorySkills = skills.filter(skill => skill.category === category);
-          const categoryHeight = calculateCategoryHeight(categorySkills.length);
+          const categoryHeight = getCategoryHeight(categorySkills.length);
+          const columns = categorySkills.length > 3 ? 3 : 2; // Dynamic columns
           
           return (
             <Box key={category} sx={{
-              height: `${categoryHeight}px`,
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              minHeight: categoryHeight
             }}>
               <Box sx={{
-                p: 3,
-                borderRadius: '12px',
+                p: 2,
+                borderRadius: '8px',
                 backgroundColor: theme.palette.background.paper,
-                boxShadow: theme.shadows[1],
+                boxShadow: theme.shadows[0],
                 border: `1px solid ${theme.palette.divider}`,
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column'
               }}>
-                <Typography variant="h6" sx={{ 
-                  mb: 2,
+                <Typography variant="subtitle1" sx={{ 
+                  mb: 1,
                   fontWeight: 'bold',
                   color: theme.palette.primary.dark,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 1
+                  gap: 1,
+                  fontSize: '1rem'
                 }}>
                   <Box sx={{
-                    width: '8px',
-                    height: '24px',
+                    width: '6px',
+                    height: '18px',
                     backgroundColor: theme.palette.primary.main,
-                    borderRadius: '4px'
+                    borderRadius: '3px'
                   }} />
                   {category}
                 </Typography>
                 
                 <Box sx={{
-                  flex: 1,
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: 1.5,
-                  alignContent: 'flex-start',
-                  overflowY: 'auto',
-                  pr: 1
+                  gap: '8px',
                 }}>
                   {categorySkills.map((skill) => (
                     <Box key={skill.id} sx={{
-                      width: 'calc(50% - 12px)',
+                      width: `calc(${100/columns}% - ${(8 * (columns-1))/columns}px)`, // Dynamic width
                       height: `${SKILL_ITEM_HEIGHT}px`,
-                      p: 1.5,
-                      borderRadius: '8px',
+                      p: 1,
+                      borderRadius: '6px',
                       backgroundColor: theme.palette.action.hover,
                       border: `1px solid ${theme.palette.divider}`,
                       display: 'flex',
@@ -136,10 +143,10 @@ const Skills = ({ skills }) => {
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <Typography variant="subtitle2" sx={{ 
+                      <Typography variant="body2" sx={{ 
                         fontWeight: 600,
                         textAlign: 'center',
-                        fontSize: '0.85rem'
+                        fontSize: '0.8rem'
                       }}>
                         {skill.name}
                       </Typography>

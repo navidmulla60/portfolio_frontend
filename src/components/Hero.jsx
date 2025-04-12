@@ -1,14 +1,20 @@
-import React from 'react';
-import { Typography, Button, Box } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/Download';
+import React from "react";
+import { Typography, Button, Box } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const Hero = ({ title, subtitle, description, resumeUrl }) => (
-  <Box sx={{ 
-    textAlign: 'center', 
-    py: 8,
-    background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
-  }}>
-    <Typography variant="h2" gutterBottom>
+  <Box
+    sx={{
+      textAlign: "center",
+      py: 8,
+      background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+      backgroundImage: 'url("/images/heroic4.jpeg")',
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <Typography variant="h2" color="white" gutterBottom>
       {title}
     </Typography>
     <Typography variant="h5" color="primary" gutterBottom>
@@ -17,16 +23,12 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => (
     <Typography variant="body1" paragraph>
       {description}
     </Typography>
-    
-    <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
-      <Button 
-        variant="contained" 
-        href="#projects"
-        sx={{ mt: 3 }}
-      >
+
+    <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
+      <Button variant="contained" href="#projects" sx={{ mt: 3 }}>
         View My Projects
       </Button>
-      
+
       {resumeUrl && (
         <Button
           variant="outlined"

@@ -7,7 +7,7 @@ import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Publications from '../components/Publications';
 import Contact from '../components/Contact'; 
- 
+import '../App.css'; // Import your CSS file here
 
 
 const Home = () => {
@@ -47,7 +47,7 @@ const Home = () => {
   }
 
   return (
-    <div className="home-container">
+    <div className="home-container" >
       <Hero 
         title="Navid A Mulla"
         subtitle="Senior Robotics Engineer | ROS/ROS2 Expert"
