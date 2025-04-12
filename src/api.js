@@ -14,6 +14,7 @@ const api = axios.create({
     ? 'https://portfoliobackend-production-a8a7.up.railway.app/api/'  
     : 'http://localhost:8000/api/',
   withCredentials: true,  // Required for CSRF and session cookies
+  baseURL:'https://portfoliobackend-production-a8a7.up.railway.app/api/',
   headers: {
     'Content-Type': 'application/json',
     'X-CSRFToken': getCSRFToken()  // Will be dynamically set for modifying requests
