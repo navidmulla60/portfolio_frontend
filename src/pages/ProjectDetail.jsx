@@ -122,17 +122,6 @@ const ProjectDetail = () => {
         )}
       </Box>
       
-      {/* Auto-embed LinkedIn videos for relevant projects */}
-      {/* {(project.title.includes('Robot') || project.title.includes('ROS')) && (
-        <Box sx={{ mt: 6 }}>
-          <Typography variant="h5" gutterBottom>Project Demonstration</Typography>
-          <Divider sx={{ mb: 3 }} />
-          <YouTubeEmbed 
-            url="https://drive.google.com/file/d/1-zfKNZH-aluNdyeZipnbpeHyiWU3Mx4K/preview?usp=drive_link" 
-            title={project.title}
-          />
-        </Box>
-      )} */}
     {(project.title.includes('Robot') || project.title.includes('ROS')) && (
       <Box sx={{ mt: 6 }}>
         <Typography variant="h5" gutterBottom>Project Demonstration</Typography>

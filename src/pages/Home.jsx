@@ -61,7 +61,7 @@ const Home = () => {
       />
       
       <Skills skills={skills} />
-      
+
       <Experience experiences={experiences} />
       
       <Projects projects={projects} title="Featured Robotics Projects" />

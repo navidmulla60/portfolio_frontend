@@ -1,16 +1,50 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { scroller } from 'react-scroll';
 
 const Navigation = () => {
+  const handleScroll = (to) => {
+    scroller.scrollTo(to, {
+      duration: 500,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -70, // Adjust for your header height
+    });
+  };
+
   const navItems = [
     { name: 'Home', type: 'router', to: '/' },
-    { name: 'Projects', type: 'scroll', to: 'projects' },
-    { name: 'Experience', type: 'scroll', to: 'experience' },
-    { name: 'Skills', type: 'scroll', to: 'skills' },
-    { name: 'Publications', type: 'scroll', to: 'publications' },
-    { name: 'Contact', type: 'scroll', to: 'contact' }
+    { 
+      name: 'Projects',
+      type: 'router',
+      to: '/#projects',
+      onClick: () => handleScroll('projects')
+    },
+    { 
+      name: 'Experience',
+      type: 'router',
+      to: '/#experience',
+      onClick: () => handleScroll('experience')
+    },
+    { 
+      name: 'Skills',
+      type: 'router',
+      to: '/#skills',
+      onClick: () => handleScroll('skills')
+    },
+    { 
+      name: 'Publications',
+      type: 'router',
+      to: '/#publications',
+      onClick: () => handleScroll('publications')
+    },
+    { 
+      name: 'Contact',
+      type: 'router',
+      to: '/#contact',
+      onClick: () => handleScroll('contact')
+    }
   ];
 
   return (
@@ -25,46 +59,24 @@ const Navigation = () => {
       zIndex: 1000
     }}>
       {navItems.map((item) => (
-        item.type === 'router' ? (
-          <Button 
-            key={item.name}
-            component={Link}
-            to={item.to}
-            sx={{ 
-              mx: 1,
-              color: '#1a237e',
-              '&:hover': {
-                backgroundColor: 'rgba(26, 35, 126, 0.1)'
-              }
-            }}
-          >
-            {item.name}
-          </Button>
-        ) : (
-          <Button 
-            key={item.name}
-            component={ScrollLink}
-            to={item.to}
-            smooth={true}
-            duration={500}
-            offset={-70} // Adjust for fixed header height
-            spy={true}
-            passive={true}
-            activeClass="active"
-            sx={{ 
-              mx: 1,
-              color: '#1a237e',
-              '&:hover': {
-                backgroundColor: 'rgba(26, 35, 126, 0.1)'
-              },
-              '&.active': {
-                borderBottom: '2px solid #1a237e'
-              }
-            }}
-          >
-            {item.name}
-          </Button>
-        )
+        <Button 
+          key={item.name}
+          component={Link}
+          to={item.to}
+          onClick={item.onClick}
+          sx={{ 
+            mx: 1,
+            color: '#1a237e',
+            '&:hover': {
+              backgroundColor: 'rgba(26, 35, 126, 0.1)'
+            },
+            '&.active': {
+              borderBottom: '2px solid #1a237e'
+            }
+          }}
+        >
+          {item.name}
+        </Button>
       ))}
     </Box>
   );
