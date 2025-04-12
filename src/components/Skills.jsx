@@ -47,7 +47,6 @@ const Skills = ({ skills }) => {
   };
 
   const getCategoryHeight = (skillCount) => {
-    // Dynamically calculate columns needed (min 2, max 3 columns)
     const columns = skillCount > 3 ? 3 : 2;
     const rowCount = Math.ceil(skillCount / columns);
     const contentHeight = (rowCount * SKILL_ITEM_HEIGHT) + ((rowCount - 1) * ROW_GAP);
@@ -55,11 +54,7 @@ const Skills = ({ skills }) => {
   };
 
   return (
-    <Box id="skills" sx={{ 
-      py: 4,
-      px: { xs: 2, md: 3 },
-      backgroundColor: theme.palette.background.default,
-    }}>
+    <Box id="skills" sx={{ py: 4, px: { xs: 2, md: 3 } }}>
       <Typography variant="h5" align="center" gutterBottom sx={{ 
         mb: 3,
         fontWeight: 'bold',
@@ -89,7 +84,7 @@ const Skills = ({ skills }) => {
         {categories.map((category) => {
           const categorySkills = skills.filter(skill => skill.category === category);
           const categoryHeight = getCategoryHeight(categorySkills.length);
-          const columns = categorySkills.length > 3 ? 3 : 2; // Dynamic columns
+          const columns = categorySkills.length > 3 ? 3 : 2; 
           
           return (
             <Box key={category} sx={{
@@ -105,7 +100,9 @@ const Skills = ({ skills }) => {
                 border: `1px solid ${theme.palette.divider}`,
                 height: '100%',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column', backgroundColor: 'rgba(255, 255, 255, 0.55)', // 👈 semi-transparent white
+                backdropFilter: 'blur(4px)', // optional: soft blur effect behind it
+                borderRadius: 3
               }}>
                 <Typography variant="subtitle1" sx={{ 
                   mb: 1,
@@ -132,7 +129,7 @@ const Skills = ({ skills }) => {
                 }}>
                   {categorySkills.map((skill) => (
                     <Box key={skill.id} sx={{
-                      width: `calc(${100/columns}% - ${(8 * (columns-1))/columns}px)`, // Dynamic width
+                      width: `calc(${100/columns}% - ${(8 * (columns-1))/columns}px)`, 
                       height: `${SKILL_ITEM_HEIGHT}px`,
                       p: 1,
                       borderRadius: '6px',

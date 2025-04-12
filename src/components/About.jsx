@@ -3,7 +3,9 @@ import { Typography, Box, Avatar, Paper } from '@mui/material';
 
 const About = ({ summary, education }) => (
   <Box id="about" sx={{ py: 4, px: 2 }}>
-    <Paper elevation={3} sx={{ p: 4, maxWidth: '800px', mx: 'auto' }}>
+    <Paper elevation={3} sx={{ p: 4, maxWidth: '800px', mx: 'auto', backgroundColor: 'rgba(255, 255, 255, 0.25)', // 👈 semi-transparent white
+    backdropFilter: 'blur(4px)', // optional: soft blur effect behind it
+    borderRadius: 3 }}>
       <Typography variant="h4" gutterBottom align="center">
         About Me
       </Typography>

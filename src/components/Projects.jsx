@@ -34,7 +34,7 @@ const Projects = ({ projects }) => (
           key={project.id}
           sx={{
             display: 'flex', // Make grid items flex containers
-            justifyContent: 'center' // Center cards horizontally
+            justifyContent: 'center', // Center cards horizontally
           }}
         >
           <Card sx={{ 
@@ -44,7 +44,9 @@ const Projects = ({ projects }) => (
             '&:hover': {
               transform: 'translateY(-5px)',
               boxShadow: 3
-            }
+            }, backgroundColor: 'rgba(255, 255, 255, 0.55)', // 👈 semi-transparent white
+            backdropFilter: 'blur(4px)', // optional: soft blur effect behind it
+            borderRadius: 3
           }}>
             {project.image && (
               <img 
