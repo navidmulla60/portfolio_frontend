@@ -20,7 +20,7 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => (
     <Typography variant="h5" color="primary" gutterBottom>
       {subtitle}
     </Typography>
-    <Typography variant="body1" paragraph>
+    <Typography variant="body1" color="white" paragraph>
       {description}
     </Typography>
 

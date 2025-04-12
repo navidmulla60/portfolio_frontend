@@ -21,7 +21,9 @@ const ProjectDetail = () => {
   const isRosProject = project.technologies.toLowerCase().includes('ros');
 
   return (
-    <Box sx={{ p: 4, maxWidth: '1200px', margin: '0 auto' }}>
+    <Box sx={{ p: 4, maxWidth: '1200px', margin: '0 auto' , backgroundColor: 'rgba(255, 255, 255, 0.25)', // 👈 semi-transparent white
+      backdropFilter: 'blur(4px)', // optional: soft blur effect behind it
+      borderRadius: 3}}>
       <Typography variant="h3" gutterBottom>
         {project.title}
       </Typography>
