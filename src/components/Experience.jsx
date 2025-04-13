@@ -68,7 +68,7 @@ const Experience = ({ experiences }) => {
                 '&:hover': {
                   transform: 'translateY(-4px)', boxShadow: theme.shadows[6]
                 },
-                backgroundColor: 'rgba(255, 255, 255, 0.25)', // 👈 semi-transparent white
+                backgroundColor: 'rgba(255, 255, 255, 0.55)', // 👈 semi-transparent white
                 backdropFilter: 'blur(4px)', // optional: soft blur effect behind it
                 borderRadius: 3
               }}>
