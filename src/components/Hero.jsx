@@ -64,7 +64,7 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => {
       }}>
         <Button 
           variant="contained" 
-          href="#projects" 
+          href="#/#projects" 
           sx={{ 
             mt: 3,
             py: isMobile ? 1 : 1.5,
