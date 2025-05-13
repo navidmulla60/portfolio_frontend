@@ -1,10 +1,12 @@
 import React from "react";
 import { Typography, Button, Box, useTheme, useMediaQuery } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
+import { scroller } from 'react-scroll';
 
 const Hero = ({ title, subtitle, description, resumeUrl }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   return (
     <Box
@@ -62,9 +64,16 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => {
         flexDirection: isMobile ? 'column' : 'row',
         px: isMobile ? 2 : 0
       }}>
-        <Button 
+      <Button 
           variant="contained" 
-          href="#/#projects" 
+          onClick={() => {
+            scroller.scrollTo('projects', {
+              duration: 500,
+              delay: 0,
+              smooth: 'easeInOutQuart',
+              offset: -70, // adjust for navbar height
+            });
+          }}
           sx={{ 
             mt: 3,
             py: isMobile ? 1 : 1.5,
@@ -72,8 +81,8 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => {
             fontSize: isMobile ? '0.8rem' : '0.9rem'
           }}
         >
-          View My Projects
-        </Button>
+       View My Projects
+      </Button>
 
         {resumeUrl && (
           <Button
