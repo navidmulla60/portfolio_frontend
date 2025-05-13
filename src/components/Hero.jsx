@@ -9,7 +9,7 @@ const Hero = ({ title, subtitle, description, resumeUrl }) => {
 
 
   return (
-    <Box
+    <Box id="home"
       sx={{
         textAlign: "center",
         py: isMobile ? 4 : 8,

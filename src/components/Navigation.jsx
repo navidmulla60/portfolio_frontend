@@ -39,7 +39,13 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: 'Home', type: 'router', to: '/' },
+    { 
+      name: 'Home',
+      type: 'scroll',
+      to: '/#home',
+      onClick: () => handleScroll('home')
+    },
+    
     { 
       name: 'Projects',
       type: 'scroll',
